@@ -93,7 +93,50 @@ img {
   font-size: 26px;
 }
 
-.slick-prev,
-.slick-next {
-  top: 23%;
+.slick-slide {
+  height: auto;
+}
+.slick-track {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: stretch;
+}
+
+.colorBlack {
+  color: black;
+}
+
+.colorMaroon {
+  color: #903;
+}
+
+.colorWhite {
+  color: white;
+}
+
+.mostPopularLink,
+.homeNewLink > img {
+  transition: all 0.3s;
+}
+
+.mostPopularLink:hover {
+  margin-left: 10px;
+  text-shadow: 0 0 5px #ff6;
+}
+
+.linkHover:hover {
+  color: #903;
+}
+
+.homeNewLink:hover img {
+  transform: scale(1.05);
+}
+
+.homeCategoryLink:hover {
+  text-shadow: 0 0 5px #ff6;
+}
+
+a.colorMaroon.homeCategoryLink::before {
+  content: "\2022\0020";
 }

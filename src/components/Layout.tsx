@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Layout = (props: any) => {
   return (
@@ -10,9 +11,16 @@ const Layout = (props: any) => {
       <Box
         component="div"
         className="layoutContent"
-        sx={{ maxWidth: "90%", margin: "0 auto", marginTop: "20px" }}
+        sx={{ maxWidth: "90%", margin: "20px auto" }}
       >
         {props.children}
+      </Box>
+      <Box
+        component="div"
+        className="layoutFooter"
+        sx={{ maxWidth: "90%", margin: "0 auto" }}
+      >
+        <Footer />
       </Box>
     </Box>
   );

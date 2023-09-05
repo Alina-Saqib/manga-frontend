@@ -1,0 +1,104 @@
+{
+  "mangaData": [
+    {
+      "id": "1",
+      "title": "Hanging Out With A Gamer Girl ",
+      "chapter": ["chapter 1", "chapter 2"],
+      "imageUrl": "/assets/manga2.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "new"]
+    },
+    {
+      "id": "2",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 5", "chapter 2"],
+      "imageUrl": "/assets/manga3.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "latest"]
+    },
+    {
+      "id": "3",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 8", "chapter 2"],
+      "imageUrl": "/assets/manga4.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "new"]
+    },
+    {
+      "id": "4",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 20", "chapter 2"],
+      "imageUrl": "/assets/manga1.png",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "new"]
+    },
+    {
+      "id": "5",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 10", "chapter 2"],
+      "imageUrl": "/assets/manga4.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["latest", "new"]
+    },
+    {
+      "id": "6",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 15", "chapter 2"],
+      "imageUrl": "/assets/manga1.png",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "latest"]
+    },
+    {
+      "id": "7",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 16", "chapter 2"],
+      "imageUrl": "/assets/manga2.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "new"]
+    },
+    {
+      "id": "8",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 1", "chapter 2", "chapter 6", "chapter 7"],
+      "imageUrl": "/assets/manga3.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["new", "latest"]
+    },
+    {
+      "id": "9",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 19", "chapter 2"],
+      "imageUrl": "/assets/manga4.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["new", "latest"]
+    },
+    {
+      "id": "10",
+      "title": "Hanging Out With A Gamer Girl",
+      "chapter": ["chapter 1", "chapter 2"],
+      "imageUrl": "/assets/manga5.jpg",
+      "trending": "yes",
+      "author": "xyz",
+      "rating": 4.3,
+      "tags": ["popular", "latest"]
+    }
+  ]
+}

@@ -1,4 +1,5 @@
-import { Box, Button, Switch } from "@mui/material";
+import { Box } from "@mui/material";
+import { Button, Switch } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";

@@ -4,6 +4,7 @@ import HotManga from "./pages/HotManga";
 import OnlineManga from "./pages/OnlineManga";
 import NewestManga from "./pages/NewestManga";
 import LatestManga from "./pages/LatestManga";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 
 function App() {
   return (

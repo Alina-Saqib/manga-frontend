@@ -1,8 +1,9 @@
 // Import css files
+import { Box } from "@mui/material";
+import { Typography } from "@mui/material";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const TrendingManga = () => {
@@ -97,7 +98,11 @@ const TrendingManga = () => {
   ];
 
   return (
-    <Box component="div" className="tendingMangaMain">
+    <Box
+      component="div"
+      className="tendingMangaMain"
+      sx={{ marginBottom: "60px" }}
+    >
       <Typography
         variant="h4"
         sx={{ color: "#903", marginBottom: "20px", fontWeight: "700" }}
