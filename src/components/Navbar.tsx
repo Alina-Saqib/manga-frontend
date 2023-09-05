@@ -3,7 +3,7 @@ import { Button, Switch } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 
 const Search = styled("div")(({ theme }) => ({
@@ -51,6 +51,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const switchLabel = { inputProps: { "aria-label": "Switch demo" } };
+
 const menuItems: { name: string; path: string }[] = [
   { name: "Manga Online", path: "online" },
   { name: "Latest Manga", path: "latest" },
@@ -59,6 +60,10 @@ const menuItems: { name: string; path: string }[] = [
 ];
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const handleSignInClick = () => {
+    navigate("/sign-in");
+  };
   return (
     <>
       <Box
@@ -120,6 +125,7 @@ const Navbar = () => {
                     marginRight: "10px",
                     background: "#000",
                   }}
+                  onClick={handleSignInClick}
                 >
                   Login
                 </Button>

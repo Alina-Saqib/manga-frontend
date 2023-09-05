@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router";
 
 const NewSignIn = () => {
   const [passShow, setPassShow] = useState(false);
@@ -22,13 +23,13 @@ const NewSignIn = () => {
     password: "",
   });
   // Function to handle the "Remember me" checkbox change
-  const handleRememberMeChange = (event) => {
+  const handleRememberMeChange = (event: any) => {
     setRememberMe(event.target.checked);
   };
 
   //   const history = useHistory();
 
-  const setVal = (e) => {
+  const setVal = (e: any) => {
     // console.log(e.target.value);
     const { name, value } = e.target;
 
@@ -40,7 +41,7 @@ const NewSignIn = () => {
     });
   };
 
-  const handleSignIn = async (e) => {
+  const handleSignIn = async (e: any) => {
     e.preventDefault();
 
     const { email, password } = inpval;
