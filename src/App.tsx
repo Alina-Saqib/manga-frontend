@@ -11,7 +11,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/hot" element={<HotManga />} />
-      <Route path="/online" element={<OnlineManga />} />
+      {/* <Route path="/online" element={<OnlineManga />} /> */}
       <Route path="/newest" element={<NewestManga />} />
       <Route path="/latest" element={<LatestManga />} />
       <Route path="/sign-in" element={<NewSignIn />} />

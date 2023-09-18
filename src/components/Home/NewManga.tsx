@@ -22,7 +22,7 @@ const NewManga = () => {
             m: "0",
           }}
         >
-          Most Popular
+          New Manga
         </Typography>
         <Grid
           container

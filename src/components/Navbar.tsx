@@ -53,7 +53,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const switchLabel = { inputProps: { "aria-label": "Switch demo" } };
 
 const menuItems: { name: string; path: string }[] = [
-  { name: "Manga Online", path: "online" },
+  { name: "Manga Online", path: "" },
   { name: "Latest Manga", path: "latest" },
   { name: "Hot Manga", path: "hot" },
   { name: "Newest Manga", path: "newest" },

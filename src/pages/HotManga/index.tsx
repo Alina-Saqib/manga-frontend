@@ -1,7 +1,41 @@
 import Layout from "../../components/Layout";
+import LatestMangaSingle from "../../components/Home/LatestMangaSingle";
+import { Box } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import { mangaData } from "../../data/data.json";
+import TrendingManga from "../../components/Home/TrendingManga";
 
 const HotManga = () => {
-  return <Layout>HotManga</Layout>;
+  return (
+    <Layout>
+      <TrendingManga />
+      <Box component="div" sx={{ background: "white" }}>
+        <Typography
+          variant="h6"
+          className="colorMaroon"
+          sx={{
+            fontSize: "20px",
+            padding: "10px 20px",
+            marginBottom: "20px",
+            borderBottom: "1px solid #903",
+          }}
+        >
+          READ MANGA ONLINE - HOT UPDATES
+        </Typography>
+        <Grid container spacing={2} sx={{ padding: "10px 20px" }}>
+          {mangaData.map((item: any, index: number) => (
+            <>
+              {item.tags.includes("hot") && (
+                <Grid item xs={6} key={index}>
+                  <LatestMangaSingle data={item} />
+                </Grid>
+              )}
+            </>
+          ))}
+        </Grid>
+      </Box>
+    </Layout>
+  );
 };
 
 export default HotManga;
