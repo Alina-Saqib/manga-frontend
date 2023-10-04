@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 
 const NewSignIn = () => {
   const [passShow, setPassShow] = useState(false);
@@ -26,6 +26,8 @@ const NewSignIn = () => {
   const handleRememberMeChange = (event: any) => {
     setRememberMe(event.target.checked);
   };
+
+  const Navigate = useNavigate();
 
   //   const history = useHistory();
 
@@ -70,7 +72,7 @@ const NewSignIn = () => {
         localStorage.setItem("password", password);
       }
 
-      const data = await fetch("http://localhost:8001/api/user/login", {
+      const data = await fetch("http://localhost:8000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,13 +84,38 @@ const NewSignIn = () => {
       });
 
       const res = await data.json();
+      const status = await data.status;
       console.log(res.token);
+       // Access the status from the response body
 
-      if (res.status === "Status Success") {
+    
+
+      if (status === 200) {
+        toast.error("Successfully Login!", {
+          position: "top-center",
+        });
         localStorage.setItem("usersdatatoken", res.token);
         // history.push("/Home");
         setInpval({ ...inpval, email: "", password: "" });
+        Navigate('/');
       }
+      else if(status === 401 ){
+        toast.error("Invalid Email!", {
+          position: "top-center",
+        });
+        }
+        else if(status === 402 ){
+          toast.error("Invalid Password!", {
+            position: "top-center",
+          });
+          }
+        else {
+          toast.error("Login Failed!", {
+            position: "top-center",
+          });
+
+        }
+
     }
   };
   return (

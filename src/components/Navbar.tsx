@@ -5,6 +5,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { Link, useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import { useEffect, useState } from "react";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,7 +61,29 @@ const menuItems: { name: string; path: string }[] = [
 ];
 
 const Navbar = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const userToken = localStorage.getItem("usersdatatoken");
+    if (userToken) {
+      // Token exists, user is logged in
+      setIsLoggedIn(true);
+    } else {
+      // Token doesn't exist, user is not logged in
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    // Clear the user token and set isLoggedIn to false
+    localStorage.removeItem("usersdatatoken");
+    setIsLoggedIn(false);
+
+    // Redirect the user to the home page or login page
+    navigate("/");
+  };
   const handleSignInClick = () => {
     navigate("/sign-in");
   };
@@ -118,8 +141,17 @@ const Navbar = () => {
                   />
                 </Search>
               </Box>
-              <Box component="div" className="authBtn">
-                <Button
+            
+                {isLoggedIn ?    <Box component="div" className="authBtn"><Button
+                  variant="contained"
+                  sx={{
+                    marginRight: "10px",
+                    background: "#000",
+                  }}
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button></Box>: <Box component="div" className="authBtn"> <Button
                   variant="contained"
                   sx={{
                     marginRight: "10px",
@@ -131,8 +163,8 @@ const Navbar = () => {
                 </Button>
                 <Button variant="contained" sx={{ background: "#000000" }}>
                   Register
-                </Button>
-              </Box>
+                </Button> </Box>}
+             
             </Box>
             <Box
               component="div"
