@@ -6,6 +6,7 @@ import StarIcon from "@mui/icons-material/Star";
 
 const LatestMangaSingle = ({ data }: any) => {
   return (
+  
     <>
       <Grid
         container
@@ -13,7 +14,7 @@ const LatestMangaSingle = ({ data }: any) => {
         sx={{ marginBottom: "20px", alignItems: "center" }}
       >
         <Grid item xs={3} sx={{ position: "relative" }}>
-          <Box component="img" src={`${data.imageUrl}`}></Box>
+          <Box component="img" src={`http://fictionteller.se/${data.thumbnail}`}></Box>
           <Box
             component="div"
             sx={{
@@ -60,17 +61,17 @@ const LatestMangaSingle = ({ data }: any) => {
           >
             {data.author}
           </Typography>
-          {data.chapter
+          {data.chapters
             .reverse()
             .slice(0, 3)
             .map((item: any, index: number) => (
               <Typography paragraph key={index} sx={{ margin: 0 }}>
                 <Link
-                  to={`/okkay/${item}`}
+                  to={`http://fictionteller.se/${item.pdfUrl}`}
                   className="linkHover colorBlack"
                   style={{ textDecoration: "none" }}
                 >
-                  {item}
+                  {item.title}
                 </Link>
               </Typography>
             ))}

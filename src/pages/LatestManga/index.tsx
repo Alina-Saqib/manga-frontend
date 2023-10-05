@@ -2,13 +2,13 @@ import Layout from "../../components/Layout";
 import LatestMangaSingle from "../../components/Home/LatestMangaSingle";
 import { Box } from "@mui/material";
 import { Grid, Typography } from "@mui/material";
-import { mangaData } from "../../data/data.json";
 import TrendingManga from "../../components/Home/TrendingManga";
 
-const LatestManga = () => {
+const LatestManga = ({ data }: any) => {
+  console.log(data)
   return (
     <Layout>
-      <TrendingManga />
+      <TrendingManga data={data}/>
       <Box component="div" sx={{ background: "white" }}>
         <Typography
           variant="h6"
@@ -23,7 +23,7 @@ const LatestManga = () => {
           READ MANGA ONLINE - LATEST UPDATES
         </Typography>
         <Grid container spacing={2} sx={{ padding: "10px 20px" }}>
-          {mangaData.map((item: any, index: number) => (
+          {data.map((item: any, index: number) => (
             <>
               {item.tags.includes("latest") && (
                 <Grid item xs={6} key={index}>

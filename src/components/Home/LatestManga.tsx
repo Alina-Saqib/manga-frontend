@@ -1,108 +1,39 @@
 import LatestMangaSingle from "./LatestMangaSingle";
 import { Box } from "@mui/material";
 import { Grid, Typography } from "@mui/material";
+import { useEffect, useState } from 'react';
 
 const LatestManga = () => {
-  const mangaData: {
-    id: string;
-    title: string;
-    chapter: Array<string>;
-    imageUrl: string;
-    trending: string;
-    author: string;
-    rating: number;
-  }[] = [
-    {
-      id: "1",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 1", "chapter 2"],
-      imageUrl: "/assets/manga2.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "2",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 5", "chapter 2"],
-      imageUrl: "/assets/manga3.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "3",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 8", "chapter 2"],
-      imageUrl: "/assets/manga4.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "4",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 20", "chapter 2"],
-      imageUrl: "/assets/manga1.png",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "5",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 10", "chapter 2"],
-      imageUrl: "/assets/manga4.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "6",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 15", "chapter 2"],
-      imageUrl: "/assets/manga1.png",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "7",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 16", "chapter 2"],
-      imageUrl: "/assets/manga2.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "8",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 1", "chapter 2", "chapter 6", "chapter 7"],
-      imageUrl: "/assets/manga3.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "9",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 19", "chapter 2"],
-      imageUrl: "/assets/manga4.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-    {
-      id: "10",
-      title: "Hanging Out With A Gamer Girl",
-      chapter: ["chapter 1", "chapter 2"],
-      imageUrl: "/assets/manga5.jpg",
-      trending: "yes",
-      author: "xyz",
-      rating: 4.3,
-    },
-  ];
+
+  const [mangaData, setMangaData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("http://localhost:8000/manga/", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP Error! Status: ${response.status}`);
+        }
+  
+        const data = await response.json();
+        setMangaData(data);
+        
+      } catch (error) {
+        console.error("Error fetching manga data:", error);
+      }
+    };
+  
+    fetchData(); 
+  }, []);
+  
+
+
   return (
     <Box component="div" sx={{ background: "white" }}>
       <Typography

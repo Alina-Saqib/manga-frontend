@@ -6,10 +6,10 @@ import PopularManga from "../../components/Home/PopularManga";
 import NewManga from "../../components/Home/NewManga";
 import Categories from "../../components/Home/Categories";
 
-const Home = () => {
+const Home = ({data} : any) => {
   return (
     <Layout>
-      <TrendingManga />
+      <TrendingManga data={data}/>
       <Grid container spacing={2}>
         <Grid item xs={8.5}>
           <LatestManga />

@@ -5,10 +5,10 @@ import { Grid, Typography } from "@mui/material";
 import { mangaData } from "../../data/data.json";
 import TrendingManga from "../../components/Home/TrendingManga";
 
-const HotManga = () => {
+const HotManga = ({ data }: any) => {
   return (
     <Layout>
-      <TrendingManga />
+      <TrendingManga data={data}/>
       <Box component="div" sx={{ background: "white" }}>
         <Typography
           variant="h6"
@@ -23,7 +23,7 @@ const HotManga = () => {
           READ MANGA ONLINE - HOT UPDATES
         </Typography>
         <Grid container spacing={2} sx={{ padding: "10px 20px" }}>
-          {mangaData.map((item: any, index: number) => (
+          {data.map((item: any, index: number) => (
             <>
               {item.tags.includes("hot") && (
                 <Grid item xs={6} key={index}>
