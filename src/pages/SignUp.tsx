@@ -1,9 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -14,25 +12,21 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {  useNavigate } from "react-router";
 
-const NewSignIn = () => {
-  
-  const [rememberMe, setRememberMe] = useState(false);
+const SignUp = () => {
+
 
   const [inpval, setInpval] = useState({
+    name:"",
+    display_name:"",
     email: "",
     password: "",
   });
-  // Function to handle the "Remember me" checkbox change
-  const handleRememberMeChange = (event: any) => {
-    setRememberMe(event.target.checked);
-  };
 
   const Navigate = useNavigate();
 
-  //   const history = useHistory();
 
   const setVal = (e: any) => {
-    // console.log(e.target.value);
+ 
     const { name, value } = e.target;
 
     setInpval(() => {
@@ -43,10 +37,20 @@ const NewSignIn = () => {
     });
   };
 
-  const handleSignIn = async (e: any) => {
+  const handleSignUp = async (e: any) => {
     e.preventDefault();
 
-    const { email, password } = inpval;
+    const { name, display_name, email, password } = inpval;
+    if(name === ""){
+        toast.error("Full Name is required!", {
+            position: "top-center",
+          });
+    }
+    if(display_name === ""){
+        toast.error("Display Name is required!", {
+            position: "top-center",
+          });
+    }
 
     if (email === "") {
       toast.error("email is required!", {
@@ -65,19 +69,15 @@ const NewSignIn = () => {
         position: "top-center",
       });
     } else {
-      // console.log("user login succesfully done");
-      if (rememberMe) {
-        // Save the username and password to some storage mechanism (e.g., localStorage)
-        localStorage.setItem("email", email);
-        localStorage.setItem("password", password);
-      }
-
-      const data = await fetch("http://localhost:8000/auth/login", {
+      
+      const data = await fetch("http://localhost:8000/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          name,
+          display_name,
           email,
           password,
         }),
@@ -85,32 +85,23 @@ const NewSignIn = () => {
 
       const res = await data.json();
       const status = await data.status;
-      console.log(res.token);
-       // Access the status from the response body
-
+      console.log(status)
     
-
-      if (status === 200) {
-        toast.error("Successfully Login!", {
+       // Access the status from the response body
+  if (status === 200) {
+        toast.error("Registered Successfully!", {
           position: "top-center",
         });
-        localStorage.setItem("usersdatatoken", res.token);
-        setInpval({ ...inpval, email: "", password: "" });
-        Navigate('/');
-        window.location.reload();
+        setInpval({ ...inpval, name:"", display_name:"", email: "", password: "" });
+        Navigate('/sign-in');
       }
-      else if(status === 401 ){
-        toast.error("Invalid Email!", {
+      else if(status === 400 ){
+        toast.error("Email or Display Name already exists", {
           position: "top-center",
         });
         }
-        else if(status === 402 ){
-          toast.error("Invalid Password!", {
-            position: "top-center",
-          });
-          }
         else {
-          toast.error("Login Failed!", {
+          toast.error("SignUp Failed!", {
             position: "top-center",
           });
 
@@ -120,10 +111,11 @@ const NewSignIn = () => {
   };
   return (
     <>
-      <Container component="main" maxWidth="xl">
+      <Container component="main" maxWidth="lg">
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 2,
+      
           }}
         >
           <Grid container>
@@ -163,16 +155,43 @@ const NewSignIn = () => {
                 }}
               >
                 <Typography component="h1" variant="h5">
-                  Sign in
+                  Register
                 </Typography>
                 <Box
                   component="form"
                   noValidate
-                  onSubmit={handleSignIn}
+                  onSubmit={handleSignUp}
                   sx={{ mt: 1 }}
                 >
+                    <TextField
+                    margin="normal"
+                    size="medium"
+                    required
+                    fullWidth
+                    id="name"
+                    label="Full Name"
+                    name="name"
+                    autoComplete="name"
+                    autoFocus
+                    value={inpval.name}
+                    onChange={setVal}
+                  />
+                     <TextField
+                    margin="normal"
+                    size="medium"
+                    required
+                    fullWidth
+                    id="display_name"
+                    label="Display Name"
+                    name="display_name"
+                    autoComplete="display_name"
+                    autoFocus
+                    value={inpval.display_name}
+                    onChange={setVal}
+                  />
                   <TextField
                     margin="normal"
+                    size="medium"
                     required
                     fullWidth
                     id="email"
@@ -185,6 +204,7 @@ const NewSignIn = () => {
                   />
                   <TextField
                     margin="normal"
+                    size="medium"
                     required
                     fullWidth
                     name="password"
@@ -195,34 +215,18 @@ const NewSignIn = () => {
                     id="password"
                     autoComplete="current-password"
                   />
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        value="remember"
-                        color="primary"
-                        checked={rememberMe}
-                        onChange={handleRememberMeChange}
-                      />
-                    }
-                    label="Remember me"
-                  />
                   <Button
                     type="submit"
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                   >
-                    Sign In
+                    Sign Up
                   </Button>
-                  <Grid container>
-                    <Grid item xs>
-                      <Link href="#" variant="body2">
-                        Forgot password?
-                      </Link>
-                    </Grid>
-                    <Grid item>
-                      <Link href="/sign-up" variant="body2">
-                        {"Don't have an account? Sign Up"}
+                  <Grid container sx={{justifyContent:"center"}}>
+                    <Grid item >
+                      <Link href="/sign-in" variant="body2">
+                        {"Already a User? Sign In"}
                       </Link>
                     </Grid>
                   </Grid>
@@ -237,4 +241,4 @@ const NewSignIn = () => {
   );
 };
 
-export default NewSignIn;
+export default SignUp;

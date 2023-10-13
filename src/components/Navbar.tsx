@@ -68,25 +68,31 @@ const Navbar = () => {
   useEffect(() => {
     const userToken = localStorage.getItem("usersdatatoken");
     if (userToken) {
-      // Token exists, user is logged in
+    
       setIsLoggedIn(true);
     } else {
-      // Token doesn't exist, user is not logged in
+
       setIsLoggedIn(false);
     }
-  }, []);
+  }, [isLoggedIn]);
+
+ 
 
   const handleLogout = () => {
-    // Clear the user token and set isLoggedIn to false
+  
     localStorage.removeItem("usersdatatoken");
     setIsLoggedIn(false);
-
-    // Redirect the user to the home page or login page
-    navigate("/");
+    navigate('/')
+    window.location.reload();
+   
   };
   const handleSignInClick = () => {
     navigate("/sign-in");
   };
+
+  const handlePublishClick =() =>{
+    navigate("/publish")
+  }
   return (
     <>
       <Box
@@ -141,8 +147,8 @@ const Navbar = () => {
                   />
                 </Search>
               </Box>
-            
-                {isLoggedIn ?    <Box component="div" className="authBtn"><Button
+              <Box component="div" className="authBtn">
+                {isLoggedIn ?    <Button
                   variant="contained"
                   sx={{
                     marginRight: "10px",
@@ -151,7 +157,7 @@ const Navbar = () => {
                   onClick={handleLogout}
                 >
                   Logout
-                </Button></Box>: <Box component="div" className="authBtn"> <Button
+                </Button>:  <Button
                   variant="contained"
                   sx={{
                     marginRight: "10px",
@@ -161,9 +167,12 @@ const Navbar = () => {
                 >
                   Login
                 </Button>
-                <Button variant="contained" sx={{ background: "#000000" }}>
-                  Register
-                </Button> </Box>}
+                }
+                <Button variant="contained" sx={{ background: "#000000" }}
+                onClick={handlePublishClick}>
+                 Publish
+                </Button> 
+                </Box>
              
             </Box>
             <Box
