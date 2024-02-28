@@ -5,6 +5,8 @@ import { excerpt } from "../../utility";
 import StarIcon from "@mui/icons-material/Star";
 
 const LatestMangaSingle = ({ data }: any) => {
+
+
   return (
   
     <>
@@ -61,20 +63,21 @@ const LatestMangaSingle = ({ data }: any) => {
           >
             {data.author}
           </Typography>
-          {data.chapters
+        {data.chapters
             .reverse()
             .slice(0, 3)
             .map((item: any, index: number) => (
               <Typography paragraph key={index} sx={{ margin: 0 }}>
                 <Link
-                  to={`http://fictionteller.se/${item.pdfUrl}`}
+                  to={`/slideshow/${encodeURIComponent(JSON.stringify([`http://fictionteller.se/${item.pdfUrl}`]))}`}
                   className="linkHover colorBlack"
                   style={{ textDecoration: "none" }}
                 >
                   {item.title}
                 </Link>
               </Typography>
-            ))}
+            ))} 
+             
         </Grid>
       </Grid>
     </>

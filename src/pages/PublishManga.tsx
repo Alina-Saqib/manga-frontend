@@ -46,6 +46,7 @@ const Tags = [
   "New",
   "Latest",
   "Trending",
+  "popular"
 ];
 
 function getStyles(tag: string, tags: string[], theme: Theme) {
@@ -254,7 +255,7 @@ function PublishManga() {
 
   return (
     <Layout>
-      <Box component="div" sx={{ background: "white" }}>
+      <Box component="div" sx={{   background: "var(--box-background)" }}>
         <Typography
           variant="h6"
           className="colorMaroon"
@@ -297,19 +298,36 @@ function PublishManga() {
             onChange={setVal}
           />
 
-          <TextField
-            margin="normal"
-            size="medium"
-            required
-            fullWidth
-            id="category"
-            label="Category"
-            name="category"
-            autoComplete="category"
-            autoFocus
-            value={inpval.category}
-            onChange={setVal}
-          />
+<FormControl fullWidth sx={{ mt: 2 }}>
+  <InputLabel id="demo-simple-select-label">Category*</InputLabel>
+  <Select
+    labelId="demo-simple-select-label"
+    id="category"
+    value={inpval.category}
+    name="category"
+    onChange={setVal}
+    input={<OutlinedInput label="Category*" />}
+  >
+   
+    <MenuItem value="Comedy">Comedy</MenuItem>
+    <MenuItem value="Latest">Latest</MenuItem>
+    <MenuItem value="All">All</MenuItem>
+    <MenuItem value="Newest">Newest</MenuItem>
+    <MenuItem value="Top">Top</MenuItem>
+    <MenuItem value="Adventure">Adventure</MenuItem>
+    <MenuItem value="Fantasy">Fantasy</MenuItem>
+    <MenuItem value="Gender bender Manga">Gender bender Manga</MenuItem>
+    <MenuItem value="Josei">Josei</MenuItem>
+    <MenuItem value="Medical">Medical</MenuItem>
+    <MenuItem value="Smut">Smut</MenuItem>
+    <MenuItem value="Sports">Sports</MenuItem>
+    <MenuItem value="Tragedy">Tragedy</MenuItem>
+    <MenuItem value="Webtoons">Webtoons</MenuItem>
+    <MenuItem value="Yuri">Yuri</MenuItem>
+    
+  </Select>
+</FormControl>
+
 
           <TextField
             margin="normal"
@@ -323,6 +341,8 @@ function PublishManga() {
             autoFocus
             value={inpval.description}
             onChange={setVal}
+            multiline
+            rows={6}
           />
 
           <FormControl fullWidth sx={{ mt: 2 }}>

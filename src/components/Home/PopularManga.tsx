@@ -3,7 +3,8 @@ import { Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import { excerpt } from "../../utility";
 
-const PopularManga = () => {
+const PopularManga = ({data}: any) => {
+  console.log(data)
   const popularTag: any = [];
 
   mangaData.forEach((item: any) => {
@@ -29,10 +30,11 @@ const PopularManga = () => {
         <Box
           component="div"
           className="homePopularLinkMain"
-          sx={{ background: "white", p: "10px 15px" }}
+          sx={{ background:  "var(--box-background)", p: "10px 15px" }}
         >
-          {popularTag.map((item: any) => (
-            <Link
+          {data.slice(0,10).map((item: any) => (
+           <>
+            {item.tags.includes("hot")  && (<Link
               to="/"
               style={{
                 display: "block",
@@ -42,7 +44,8 @@ const PopularManga = () => {
               className="colorMaroon mostPopularLink"
             >
               {excerpt(item.title, 40)}
-            </Link>
+            </Link>)}
+            </>
           ))}
         </Box>
       </Box>

@@ -13,10 +13,16 @@ import { Container } from "@mui/material";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {  useNavigate } from "react-router";
+import ForgetPassword from "./ForgetPassword";
 
 const NewSignIn = () => {
   
   const [rememberMe, setRememberMe] = useState(false);
+  const [isForgetPasswordModalOpen, setForgetPasswordModalOpen] = useState(false);
+
+  const openForgetPasswordModal = () => {
+    setForgetPasswordModalOpen(true);
+  };
 
   const [inpval, setInpval] = useState({
     email: "",
@@ -91,7 +97,7 @@ const NewSignIn = () => {
     
 
       if (status === 200) {
-        toast.error("Successfully Login!", {
+        toast.success("Successfully Login!", {
           position: "top-center",
         });
         localStorage.setItem("usersdatatoken", res.token);
@@ -120,10 +126,11 @@ const NewSignIn = () => {
   };
   return (
     <>
-      <Container component="main" maxWidth="xl">
+      <Container component="main" maxWidth="xl" >
         <Box
           sx={{
             marginTop: 8,
+            
           }}
         >
           <Grid container>
@@ -216,9 +223,10 @@ const NewSignIn = () => {
                   </Button>
                   <Grid container>
                     <Grid item xs>
-                      <Link href="#" variant="body2">
+                      <Link onClick={openForgetPasswordModal} variant="body2">
                         Forgot password?
                       </Link>
+                      <ForgetPassword open={isForgetPasswordModalOpen} onClose={() => setForgetPasswordModalOpen(false)} />
                     </Grid>
                     <Grid item>
                       <Link href="/sign-up" variant="body2">

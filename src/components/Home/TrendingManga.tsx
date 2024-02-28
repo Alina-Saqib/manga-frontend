@@ -6,7 +6,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 
+
+
 const TrendingManga = ({data}: any) => {
+
+ 
   let settings = {
     dots: false,
     infinite: true,
@@ -96,7 +100,10 @@ const TrendingManga = ({data}: any) => {
       trending: "yes",
     },
   ];
-
+  const getRandomChapterNumber = () => {
+  return Math.floor(Math.random() * 4); 
+};
+  
   return (
     <Box
       component="div"
@@ -110,12 +117,12 @@ const TrendingManga = ({data}: any) => {
         Trending
       </Typography>
       <Slider {...settings}>
-        {mangaData.map((item: any, index: number) => (
+        {data.map((item: any, index: number) => (
           <Box
             component="div"
             className="trendingMangaSingle"
             sx={{
-              background: `url(${item.imageUrl})`,
+              background: `url(http://fictionteller.se/${item.thumbnail})`,
               height: "200px",
               backgroundPosition: "center",
               backgroundSize: "cover",
@@ -159,7 +166,7 @@ const TrendingManga = ({data}: any) => {
                   paragraph
                   sx={{ fontSize: "14px", marginBottom: "0px" }}
                 >
-                  {item.chapter[0]}
+                  {item.chapters[0].title}
                 </Typography>
               </Link>
             </Box>

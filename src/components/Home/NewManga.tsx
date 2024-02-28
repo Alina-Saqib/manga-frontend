@@ -2,14 +2,8 @@ import { mangaData } from "../../data/data.json";
 import { Box, Typography, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const NewManga = () => {
-  const popularTag: any = [];
-
-  mangaData.forEach((item: any) => {
-    if (item.tags.includes("new")) {
-      popularTag.push(item);
-    }
-  });
+const NewManga = ({data}: any) => {
+ 
   return (
     <>
       <Box component="div">
@@ -27,11 +21,12 @@ const NewManga = () => {
         <Grid
           container
           className="homePopularLinkMain"
-          sx={{ background: "white", width: "100%", margin: "0" }}
+          sx={{ background: "var(--box-background)", width: "100%", margin: "0" }}
           spacing={1}
         >
-          {popularTag.map((item: any) => (
-            <Grid item xs={3}>
+          {data.slice(0,6).map((item: any) => (
+            <>
+            {  item.tags.includes("new")  && (<Grid item xs={3}>
               <Link
                 to="/"
                 style={{
@@ -39,9 +34,10 @@ const NewManga = () => {
                 }}
                 className="colorMaroon homeNewLink"
               >
-                <img src={`${item.imageUrl}`} alt={`${item.title}`} />
+                <img src={`http://fictionteller.se/${item.thumbnail}`} alt={`${item.title}`} />
               </Link>
-            </Grid>
+            </Grid>)}
+            </>
           ))}
         </Grid>
       </Box>

@@ -18,7 +18,7 @@ const Layout = (props: any) => {
       <Box
         component="div"
         className="layoutFooter"
-        sx={{ maxWidth: "90%", margin: "0 auto" }}
+        sx={{ maxWidth: "90%", margin: "0 auto"}}
       >
         <Footer />
       </Box>

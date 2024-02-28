@@ -5,7 +5,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import InputBase from "@mui/material/InputBase";
 import { Link, useNavigate } from "react-router-dom";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from '@mui/icons-material/LightMode';
 import { useEffect, useState } from "react";
+import { useDarkMode } from '../context/DarkModeContext';
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,8 +64,50 @@ const menuItems: { name: string; path: string }[] = [
 
 const Navbar = () => {
 
+
+  const { darkMode, toggleDarkMode } = useDarkMode();
+
+
+ 
+  const updateDarkModeStyles = (theme: string) => {
+    const themes : Record<string, string> = {
+      light: "#f5f5f5",
+      dark: "#333333",
+    };
+    const BoxTheme:  Record<string, string> = {
+      light: "white",
+      dark: "gray",
+    };
+
+
+    localStorage.setItem("theme", theme);
+
+    
+    document.documentElement.style.setProperty("--body-background", themes[theme] || themes.light);
+    document.documentElement.style.setProperty("--box-background", BoxTheme[theme] || BoxTheme.light);
+  };
+
+
+  useEffect(() => {
+    updateDarkModeStyles(darkMode);
+  }, [darkMode]);
+
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
+
+  
+
+  
+  
+  const handleSearch = (e: any) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    navigate(`/?query=${query}`);
+  };
+
+
 
   useEffect(() => {
     const userToken = localStorage.getItem("usersdatatoken");
@@ -93,6 +137,8 @@ const Navbar = () => {
   const handlePublishClick =() =>{
     navigate("/publish")
   }
+
+  const modeIcon = darkMode === 'dark' ? <LightModeIcon/> : <DarkModeIcon/>;
   return (
     <>
       <Box
@@ -109,7 +155,7 @@ const Navbar = () => {
         <Box
           component="div"
           className="navbarMainLeft"
-          sx={{ width: "19%", background: "white", padding: "40px 40px" }}
+          sx={{ width: "19%",background: "var(--box-background)", padding: "40px 40px" }}
         >
           <Link to="/">
             <Box
@@ -128,7 +174,7 @@ const Navbar = () => {
               alignItems: "center",
               justifyContent: "space-between",
               padding: "20px 0px",
-              background: "white",
+              background: "var(--box-background)",
             }}
           >
             <Box
@@ -144,6 +190,8 @@ const Navbar = () => {
                   <StyledInputBase
                     placeholder="Search…"
                     inputProps={{ "aria-label": "search" }}
+                    value={searchQuery}
+                    onChange={handleSearch}
                   />
                 </Search>
               </Box>
@@ -180,8 +228,10 @@ const Navbar = () => {
               className="darkModeToggler"
               sx={{ display: "flex", alignItems: "center", gap: "10px" }}
             >
-              <DarkModeIcon />
-              <Switch {...switchLabel} />
+              {modeIcon}
+              <Switch {...switchLabel} 
+              checked={darkMode === 'dark'}
+              onChange={toggleDarkMode}/>
             </Box>
           </Box>
           <Box component="div" className="navbarMenuBar">

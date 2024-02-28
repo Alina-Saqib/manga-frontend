@@ -1,15 +1,22 @@
 import Layout from "../../components/Layout";
 import LatestMangaSingle from "../../components/Home/LatestMangaSingle";
-import { Box } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { Grid, Typography } from "@mui/material";
 import { mangaData } from "../../data/data.json";
 import TrendingManga from "../../components/Home/TrendingManga";
+import { useState } from "react";
 
-const NewestManga = ({ data }: any) => {
+const NewestManga = ({ data,totalPages, setCurrentPage }: any) => {
+  const [currentPage, setCurrentPageLocal] = useState(1);
+
+  const handlePageChange = (event: any, newPage:any) => {
+    setCurrentPageLocal(newPage);
+    setCurrentPage(newPage); 
+  };
   return (
     <Layout>
       <TrendingManga data={data}/>
-      <Box component="div" sx={{ background: "white" }}>
+      <Box component="div" sx={{ background: "var(--box-background)" }}>
         <Typography
           variant="h6"
           className="colorMaroon"
@@ -33,6 +40,19 @@ const NewestManga = ({ data }: any) => {
             </>
           ))}
         </Grid>
+        <Box sx={{ display: 'flex', justifyContent: 'center', padding: '20px' }}>
+        <Pagination
+          count={totalPages}
+          page={currentPage}
+          onChange={handlePageChange}
+          sx={{
+            '& .MuiPaginationItem-page.Mui-selected': {
+              backgroundColor: '#903',
+              color:"white"
+            },
+          }}
+        />
+      </Box>
       </Box>
     </Layout>
   );

@@ -89,7 +89,7 @@ const SignUp = () => {
     
        // Access the status from the response body
   if (status === 200) {
-        toast.error("Registered Successfully!", {
+        toast.success("Registered Successfully!", {
           position: "top-center",
         });
         setInpval({ ...inpval, name:"", display_name:"", email: "", password: "" });

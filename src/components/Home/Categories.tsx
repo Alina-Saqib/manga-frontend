@@ -35,7 +35,7 @@ const Categories = () => {
         Categories
       </Typography>
       <Box component="div" className="homeCategoriesListMain">
-        <Grid container sx={{ background: "white", p: "10px 15px" }}>
+        <Grid container sx={{ background: "var(--box-background)", p: "10px 15px" }}>
           {categories.sort().map((item: string) => (
             <Grid
               className="homeCategoriesListSingle"
